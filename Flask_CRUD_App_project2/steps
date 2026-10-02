@@ -1,0 +1,35 @@
+
+steps:
+1. Requirements (refer requirements.txt)
+2. Database Setup # database.py
+3. Main Application # app.py
+4. Templates 
+    #base.html (Layout)
+    #index.html (List / Read All)
+    #create.html (Create)
+    #edit.html (Update)
+    #view.html (Read Single)
+5. Stylesheet
+6. How to Run
+
+# 1. Navigate to project directory
+cd flask_crud_app
+
+# 2. Install dependencies
+pip install flask
+
+# 3. Run the application
+python app.py
+
+7. CRUD Operations Summary
+
+┌────────────┬────────┬──────────────────────┬──────────────────────┐
+│ Operation  │ Method │ Route                │ SQL Statement        │
+├────────────┼────────┼──────────────────────┼──────────────────────┤
+│ CREATE     │ POST   │ /create              │ INSERT INTO ...      │
+│ READ (all) │ GET    │ /                    │ SELECT * FROM ...    │
+│ READ (one) │ GET    │ /employee/<id>       │ SELECT * WHERE id=?  │
+│ UPDATE     │ POST   │ /edit/<id>           │ UPDATE ... WHERE id= │
+│ DELETE     │ POST   │ /delete/<id>         │ DELETE ... WHERE id= │
+│ SEARCH     │ GET    │ /search?q=keyword    │ SELECT * WHERE LIKE  │
+└────────────┴────────┴──────────────────────┴──────────────────────┘

@@ -1,0 +1,47 @@
+<!-- templates/edit.html -->
+{% extends 'base.html' %}
+{% block title %}Edit {{ employee['name'] }}{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Edit Employee #{{ employee['id'] }}</h1>
+
+    <form method="POST" action="{{ url_for('edit', employee_id=employee['id']) }}">
+        <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name"
+                   value="{{ employee['name'] }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email"
+                   value="{{ employee['email'] }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department *</label>
+            <select id="department" name="department" required>
+                <option value="">-- Select Department --</option>
+                {% for dept in ['Engineering','Marketing','HR','Finance','Sales','Operations'] %}
+                <option value="{{ dept }}"
+                    {{ 'selected' if employee['department'] == dept }}>
+                    {{ dept }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="salary">Annual Salary ($) *</label>
+            <input type="number" id="salary" name="salary"
+                   value="{{ employee['salary'] }}" min="0" step="100" required>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-warning">Update Employee</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

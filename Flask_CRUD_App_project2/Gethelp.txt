@@ -1,0 +1,61 @@
+1. Requirements
+# requirements.txt
+Flask==3.0.3
+
+--------------
+Setup Instructions
+# 1. Copy the example env file
+cp .env.example .env
+
+# 2. Generate a secure secret key
+python -c "import secrets; print(secrets.token_hex(32))"
+
+# 3. Paste the generated key into .env
+#    SECRET_KEY=<paste-your-generated-key-here>
+
+4. Install dependencies
+pip install -r requirements.txt
+
+-------------
+How to Run
+# 1. Navigate to project directory
+cd flask_crud_app
+
+# 2. Install dependencies
+pip install flask
+
+# 3. Run the application
+python app.py
+
+Output:
+ ✅ Database initialized successfully.
+ * Running on http://127.0.0.1:5000
+
+-------------
+
+
+
+CRUD Operations Summary
+
+┌────────────┬────────┬──────────────────────┬──────────────────────┐
+│ Operation  │ Method │ Route                │ SQL Statement        │
+├────────────┼────────┼──────────────────────┼──────────────────────┤
+│ CREATE     │ POST   │ /create              │ INSERT INTO ...      │
+│ READ (all) │ GET    │ /                    │ SELECT * FROM ...    │
+│ READ (one) │ GET    │ /employee/<id>       │ SELECT * WHERE id=?  │
+│ UPDATE     │ POST   │ /edit/<id>           │ UPDATE ... WHERE id= │
+│ DELETE     │ POST   │ /delete/<id>         │ DELETE ... WHERE id= │
+│ SEARCH     │ GET    │ /search?q=keyword    │ SELECT * WHERE LIKE  │
+└────────────┴────────┴──────────────────────┴──────────────────────┘
+
+
+Key Features
+Database: SQLite (zero config, file-based)
+Parameterized Queries: Uses ? placeholders to prevent SQL injection
+Validation: Server-side + HTML5 client-side
+Flash Messages: Success/Error feedback after each action
+Search: Filter by name, email, or department
+Delete Confirmation: JavaScript confirm() dialog before deletion
+Responsive CSS: Clean, modern UI without external frameworks
+
+

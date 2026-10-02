@@ -1,0 +1,49 @@
+<!-- templates/view.html -->
+{% extends 'base.html' %} {% block title %}{{ employee['name'] }}{% endblock %}
+{% block content %}
+<div class="detail-card">
+  <h1>{{ employee['name'] }}</h1>
+
+  <div class="detail-grid">
+    <div class="detail-item">
+      <span class="label">ID</span>
+      <span class="value">{{ employee['id'] }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Email</span>
+      <span class="value">{{ employee['email'] }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Department</span>
+      <span class="value"
+        ><span class="badge">{{ employee['department'] }}</span></span
+      >
+    </div>
+    <div class="detail-item">
+      <span class="label">Salary</span>
+      <span class="value">${{ "{:,.2f}".format(employee['salary']) }}</span>
+    </div>
+    <div class="detail-item">
+      <span class="label">Created</span>
+      <span class="value">{{ employee['created_at'] }}</span>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <a
+      href="{{ url_for('edit', employee_id=employee['id']) }}"
+      class="btn btn-warning"
+      >Edit</a
+    >
+    <form
+      action="{{ url_for('delete', employee_id=employee['id']) }}"
+      method="POST"
+      style="display: inline"
+      onsubmit="return confirm('Are you sure?');"
+    >
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to List</a>
+  </div>
+</div>
+{% endblock %}
